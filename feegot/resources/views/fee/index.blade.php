@@ -93,7 +93,6 @@
 					classes in selected year)</label>
 			</div>
 
-
 			<button type="submit" class="btn btn-primary">Create Fee</button>
 		</form>
 
@@ -105,7 +104,7 @@
 					<th>Title</th>
 					<th>Amount</th>
 					<th>Due Date</th>
-					<th>Class ID</th>
+					<th>Class</th>
 					<th>Year</th>
 					<th>Global</th>
 					<th>Actions</th>
@@ -143,7 +142,8 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h1 class="modal-title fs-5" id="editFeeModalLabel">Edit Fee</h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeModal()"></button>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+						onclick="closeModal()"></button>
 				</div>
 				<div class="modal-body">
 					<form id="editFeeForm" method="POST" action="">
@@ -212,7 +212,8 @@
 						</div>
 
 						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closeModal()">Close</button>
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+								onclick="closeModal()">Close</button>
 							<button type="submit" class="btn btn-primary">Save changes</button>
 						</div>
 					</form>
@@ -220,11 +221,7 @@
 			</div>
 		</div>
 	</div>
-
 </body>
-
-</html>
-
 
 <script>
 	function confirmDelete() {
@@ -279,12 +276,12 @@
     modal.style.display = 'none'; // Hide modal
 }
 
-document.addEventListener('click', function(event) {
-    const modal = document.getElementById('editFeeModal');
-    if (event.target === modal) {
-        closeModal();
-    }
-})
+	document.addEventListener('click', function(event) {
+		const modal = document.getElementById('editFeeModal');
+		if (event.target === modal) {
+			closeModal();
+		}
+	})
 
 	function loadClasses(year, selectedClassID) {
 
@@ -348,8 +345,5 @@ document.addEventListener('click', function(event) {
         }
     });
 </script>
-
-
-</body>
 
 </html>

@@ -30,13 +30,11 @@
             {{ session('error') }}
         </div>
         @endif
-
         <h1>Classroom Management</h1>
 
         <h2>Add New Classroom</h2>
         <form action="/classrooms" method="POST" id="classroomForm">
             @csrf
-
             <div class="row justify-content-center align-items-center g-2">
                 <div class="col">
                     <div class="mb-3">
@@ -58,7 +56,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="mb-3">
                 <label for="teacherID" class="form-label">Assign Teacher:</label>
                 <select name="teacherID" id="teacherID" class="form-select" required>
@@ -68,7 +65,6 @@
                     @endforeach
                 </select>
             </div>
-
             <button type="submit" class="btn btn-primary">Create Classroom</button>
         </form>
 
@@ -113,12 +109,13 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="editClassroomModalLabel">Edit Classroom</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeModal()"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        onclick="closeModal()"></button>
                 </div>
                 <div class="modal-body">
                     <form id="editClassroomForm" method="POST">
                         @csrf
-                        <input type="hidden" name="_method" value="POST"> <!-- Keep this hidden for Laravel -->
+                        <input type="hidden" name="_method" value="POST">
                         <input type="hidden" name="classID" id="editClassroomId">
 
                         <div class="row justify-content-center align-items-center g-2">
@@ -154,9 +151,10 @@
                             </select>
                         </div>
                         <div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closeModal()">Close</button>
-							<button type="submit" class="btn btn-primary">Update Classroom</button>
-						</div>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                onclick="closeModal()">Close</button>
+                            <button type="submit" class="btn btn-primary">Update Classroom</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -169,33 +167,32 @@
     }
 
     function openEditModal(classroom) {
-    // Populate fields
-    document.getElementById('editClassroomId').value = classroom.classID;
-    document.getElementById('editClassName').value = classroom.className;
-    document.getElementById('editYear').value = classroom.year;
-    document.getElementById('editTeacherID').value = classroom.teacherID; // Set selected teacher in the edit form
+        // Populate fields
+        document.getElementById('editClassroomId').value = classroom.classID;
+        document.getElementById('editClassName').value = classroom.className;
+        document.getElementById('editYear').value = classroom.year;
+        document.getElementById('editTeacherID').value = classroom.teacherID;
 
-    // Set the action for the form
-    const form = document.getElementById('editClassroomForm');
-    form.action = `/classrooms/update/${classroom.classID}`; // Set the correct action URL for updating
+        const form = document.getElementById('editClassroomForm');
+        form.action = `/classrooms/update/${classroom.classID}`;
 
-    // Show modal
-    const modal = document.getElementById('editClassroomModal');
-    modal.classList.add('show');
-    modal.style.display = 'block'; // Ensure it's displayed
-}
-function closeModal() {
-    const modal = document.getElementById('editClassroomModal');
-    modal.classList.remove('show');
-    modal.style.display = 'none'; // Hide modal
-}
-
-document.addEventListener('click', function(event) {
-    const modal = document.getElementById('editClassroomModal');
-    if (event.target === modal) {
-        closeModal();
+        const modal = document.getElementById('editClassroomModal');
+        modal.classList.add('show');
+        modal.style.display = 'block';
     }
-})
+
+    function closeModal() {
+        const modal = document.getElementById('editClassroomModal');
+        modal.classList.remove('show');
+        modal.style.display = 'none'; // Hide modal
+    }
+
+    document.addEventListener('click', function(event) {
+            const modal = document.getElementById('editClassroomModal');
+            if (event.target === modal) {
+            closeModal();
+        }
+    })
     </script>
 
 

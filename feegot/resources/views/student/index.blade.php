@@ -133,7 +133,8 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h1 class="modal-title fs-5" id="editStudentModalLabel">Edit Student</h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeModal()"></button>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+						onclick="closeModal()"></button>
 				</div>
 				<div class="modal-body">
 					<form id="editStudentForm" method="POST" action="">
@@ -186,7 +187,8 @@
 							</div>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closeModal()">Close</button>
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+								onclick="closeModal()">Close</button>
 							<button type="submit" class="btn btn-primary">Update Student</button>
 						</div>
 					</form>
@@ -194,106 +196,106 @@
 			</div>
 		</div>
 	</div>
+</body>
 
-	<script>
-		function confirmDelete() {
-        return confirm('Are you sure you want to delete this student? This action cannot be undone.');
-    }
+<script>
+	function confirmDelete() {
+		return confirm('Are you sure you want to delete this student? This action cannot be undone.');
+	}
 
 	function openEditModal(student) {
-    // Populate fields
-    document.getElementById('editIdentityCardNumber').value = student.IdentityCardNumber;
-    document.getElementById('editName').value = student.Name;
+		// Populate fields
+		document.getElementById('editIdentityCardNumber').value = student.IdentityCardNumber;
+		document.getElementById('editName').value = student.Name;
 
-    // Set the action for the form
-    const form = document.getElementById('editStudentForm');
-    form.action = `/students/update/${student.IdentityCardNumber}`; // Set the correct action URL for updating
+		// Set the action for the form
+		const form = document.getElementById('editStudentForm');
+		form.action = `/students/update/${student.IdentityCardNumber}`; // Set the correct action URL for updating
 
-    // Load class options based on selected year
-    loadClasses(student.Year, student.ClassID); // Pre-select classID
+		// Load class options based on selected year
+		loadClasses(student.Year, student.ClassID); // Pre-select classID
 
-    // Show modal
-    const modal = document.getElementById('editStudentModal');
-    modal.classList.add('show');
-    modal.style.display = 'block'; // Ensure it's displayed
-}
-
-function closeModal() {
-    const modal = document.getElementById('editStudentModal');
-    modal.classList.remove('show');
-    modal.style.display = 'none'; // Hide modal
-}
-
-document.addEventListener('click', function(event) {
-    const modal = document.getElementById('editStudentModal');
-    if (event.target === modal) {
-        closeModal();
-    }
-});
-
-		
-
-		function loadClasses(year, selectedClassID) {
-
-			document.getElementById('editYear').addEventListener('change', function() {
-				const selectedYear = this.value;
-				const classIDSelect = document.getElementById('editClassID');
-
-			// Clear previous options
-			classIDSelect.innerHTML = '<option value="">Select Class</option>';
-			classIDSelect.disabled = true; // Disable until year is selected
-
-			// If a year is selected, fetch the available classes
-			if (selectedYear) {
-				classIDSelect.disabled = false;
-				
-				// Fetch classes for the selected year
-				fetch(`/classes/${selectedYear}`)
-				.then(response => response.json())
-					.then(data => {
-						data.forEach(classItem => {
-							const option = document.createElement('option');
-							option.value = classItem.classID; // Ensure this matches your classID field
-							option.textContent = classItem.classID + ' \u2022 ' + classItem.className; // Ensure this matches your className field
-							classIDSelect.appendChild(option);
-						});
-					})
-					.catch(error => {
-						console.error('Error fetching classes:', error);
-					});
-				}
-			});
+		// Show modal
+		const modal = document.getElementById('editStudentModal');
+		modal.classList.add('show');
+		modal.style.display = 'block'; // Ensure it's displayed
 		}
 
-        document.getElementById('year').addEventListener('change', function () {
-            const selectedYear = this.value;
-            const classIDSelect = document.getElementById('classID');
+		function closeModal() {
+		const modal = document.getElementById('editStudentModal');
+		modal.classList.remove('show');
+		modal.style.display = 'none'; // Hide modal
+		}
 
-            // Clear previous options
-            classIDSelect.innerHTML = '<option value="">Select Class</option>';
-            classIDSelect.disabled = true; // Disable until year is selected
+		document.addEventListener('click', function(event) {
+		const modal = document.getElementById('editStudentModal');
+		if (event.target === modal) {
+			closeModal();
+		}
+	});
 
-            // If a year is selected, fetch the available classes
-            if (selectedYear) {
-                classIDSelect.disabled = false;
+	
 
-                // Fetch classes for the selected year
-                fetch(`/classes/${selectedYear}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        data.forEach(classItem => {
-                            const option = document.createElement('option');
-                            option.value = classItem.classID;
-                            option.textContent = classItem.classID + ' \u2022 ' + classItem.className;
-                            classIDSelect.appendChild(option);
-                        });
-                    })
-                    .catch(error => {
-                        console.error('Error fetching classes:', error);
-                    });
-            }
-        });
-	</script>
-</body>
+	function loadClasses(year, selectedClassID) {
+
+		document.getElementById('editYear').addEventListener('change', function() {
+			const selectedYear = this.value;
+			const classIDSelect = document.getElementById('editClassID');
+
+		// Clear previous options
+		classIDSelect.innerHTML = '<option value="">Select Class</option>';
+		classIDSelect.disabled = true; // Disable until year is selected
+
+		// If a year is selected, fetch the available classes
+		if (selectedYear) {
+			classIDSelect.disabled = false;
+			
+			// Fetch classes for the selected year
+			fetch(`/classes/${selectedYear}`)
+			.then(response => response.json())
+				.then(data => {
+					data.forEach(classItem => {
+						const option = document.createElement('option');
+						option.value = classItem.classID; // Ensure this matches your classID field
+						option.textContent = classItem.classID + ' \u2022 ' + classItem.className; // Ensure this matches your className field
+						classIDSelect.appendChild(option);
+					});
+				})
+				.catch(error => {
+					console.error('Error fetching classes:', error);
+				});
+			}
+		});
+	}
+
+	document.getElementById('year').addEventListener('change', function () {
+		const selectedYear = this.value;
+		const classIDSelect = document.getElementById('classID');
+
+		// Clear previous options
+		classIDSelect.innerHTML = '<option value="">Select Class</option>';
+		classIDSelect.disabled = true; // Disable until year is selected
+
+		// If a year is selected, fetch the available classes
+		if (selectedYear) {
+			classIDSelect.disabled = false;
+
+			// Fetch classes for the selected year
+			fetch(`/classes/${selectedYear}`)
+				.then(response => response.json())
+				.then(data => {
+					data.forEach(classItem => {
+						const option = document.createElement('option');
+						option.value = classItem.classID;
+						option.textContent = classItem.classID + ' \u2022 ' + classItem.className;
+						classIDSelect.appendChild(option);
+					});
+				})
+				.catch(error => {
+					console.error('Error fetching classes:', error);
+				});
+		}
+	});
+</script>
 
 </html>

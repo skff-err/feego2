@@ -159,7 +159,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="editUserModalLabel">Edit User</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeModal()"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        onclick="closeModal()"></button>
                 </div>
                 <div class="modal-body">
 
@@ -212,75 +213,70 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closeModal()">Close</button>
-							<button type="submit" class="btn btn-primary">Update User</button>
-						</div>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                onclick="closeModal()">Close</button>
+                            <button type="submit" class="btn btn-primary">Update User</button>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+</body>
 
-
-    <script>
-        function confirmDelete() {
+<script>
+    function confirmDelete() {
         return confirm('Are you sure you want to delete this student? This action cannot be undone.');
     }
 
-        function toggleGuardianFields() {
-            const roleSelect = document.getElementById('role');
-            const guardianFields = document.getElementById('guardianFields');
-            guardianFields.style.display = roleSelect.value === '2' ? 'block' : 'none';
-        }
-
-        function toggleGuardianFieldsEdit() {
-            const roleSelect = document.getElementById('editRole');
-            const editGuardianFields = document.getElementById('editGuardianFields');
-            editGuardianFields.style.display = roleSelect.value === '2' ? 'block' : 'none';
-        }
-
-        function openEditModal(user) {
-    document.getElementById('editUserId').value = user.id;
-    document.getElementById('editName').value = user.name;
-    document.getElementById('editEmail').value = user.email;
-    const roleSelect = document.getElementById('editRole');
-    roleSelect.value = user.role;
-    toggleGuardianFieldsEdit();
-
-    if (user.role == 2) {
-        document.getElementById('editPhoneNumber').value = user.phone_number || '';
-        document.getElementById('editAddress').value = user.address || '';
-    } else {
-        document.getElementById('editPhoneNumber').value = '';
-        document.getElementById('editAddress').value = '';
+    function toggleGuardianFields() {
+        const roleSelect = document.getElementById('role');
+        const guardianFields = document.getElementById('guardianFields');
+        guardianFields.style.display = roleSelect.value === '2' ? 'block' : 'none';
     }
 
-    const form = document.getElementById('editUserForm');
-    form.action = `/users/update/${user.id}`; // Update action URL to POST
-
-    const modal = document.getElementById('editUserModal');
-    modal.classList.add('show');
-    modal.style.display = 'block'; // Ensure it's displayed
-
-}
-
-function closeModal() {
-    const modal = document.getElementById('editUserModal');
-    modal.classList.remove('show');
-    modal.style.display = 'none'; // Hide modal
-}
-
-document.addEventListener('click', function(event) {
-    const modal = document.getElementById('editUserModal');
-    if (event.target === modal) {
-        closeModal();
+    function toggleGuardianFieldsEdit() {
+        const roleSelect = document.getElementById('editRole');
+        const editGuardianFields = document.getElementById('editGuardianFields');
+        editGuardianFields.style.display = roleSelect.value === '2' ? 'block' : 'none';
     }
-})
 
-    </script>
-    
+    function openEditModal(user) {
+        document.getElementById('editUserId').value = user.id;
+        document.getElementById('editName').value = user.name;
+        document.getElementById('editEmail').value = user.email;
+        const roleSelect = document.getElementById('editRole');
+        roleSelect.value = user.role;
+        toggleGuardianFieldsEdit();
 
+        if (user.role == 2) {
+            document.getElementById('editPhoneNumber').value = user.phone_number || '';
+            document.getElementById('editAddress').value = user.address || '';
+        } else {
+            document.getElementById('editPhoneNumber').value = '';
+            document.getElementById('editAddress').value = '';
+        }
 
-</body>
+        const form = document.getElementById('editUserForm');
+        form.action = `/users/update/${user.id}`; // Update action URL to POST
+
+        const modal = document.getElementById('editUserModal');
+        modal.classList.add('show');
+        modal.style.display = 'block'; // Ensure it's displayed
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('editUserModal');
+        modal.classList.remove('show');
+        modal.style.display = 'none'; // Hide modal
+    }
+
+    document.addEventListener('click', function(event) {
+        const modal = document.getElementById('editUserModal');
+        if (event.target === modal) {
+            closeModal();
+        }
+    })
+</script>
 
 </html>
