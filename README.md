@@ -1,4 +1,4 @@
-requirements:
+requirements:  
 PHP 8.2  
 PHP Composer  
 Node.js  
