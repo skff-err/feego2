@@ -12,7 +12,7 @@ installation and running:
 2. navigate into folder feegot within the earlier directory and run the following commands  
    `npm install`  
    `composer update`, important or else php artisan will not run  
-3. run migrations with the following command
+3. run migrations with the following command  
    `php artisan migrate`
 4. once done, run the following commands  
    `npm run dev` which initializes vite and the SCSS files  
