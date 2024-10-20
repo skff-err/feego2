@@ -1,7 +1,7 @@
 requirements:
-PHP 8.2
-PHP Composer
-Node.js
+PHP 8.2  
+PHP Composer  
+Node.js  
 
 installation and running:
 
