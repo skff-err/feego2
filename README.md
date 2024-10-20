@@ -1,9 +1,16 @@
-running:  
-open the following directory "feego2/feegot"
+requirements:
+PHP 8.2
+PHP Composer
+Node.js
 
-with powershell run the following command:  
-`feego2/feegot > php artisan serve`
+installation and running:
 
-open another powershell terminal and run the following command:  
-`feego2/feegot > npm build dev`  
-this initializes vite and bootstrap
+1. powershell
+   `git clone https://github.com/skff-err/feego2`
+   on any directory
+2. navigate into folder feegot within the earlier directory and run the following commands
+   `npm install`
+   `composer update`
+3. once done, run the following commands
+   `npm run dev` which initializes vite and the SCSS files
+   `php artisan serve` which runs the laravel project on 127.0.0.1
