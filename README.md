@@ -5,9 +5,10 @@ Node.js
 
 installation and running:
 
-1. powershell  
+0. powershell  
    `git clone https://github.com/skff-err/feego2`  
-   on any directory  
+   on any directory
+1. within feego2/feegot, change .env.example to .env and adjust accordingy, make sure to generate APP_KEY
 2. navigate into folder feegot within the earlier directory and run the following commands  
    `npm install`  
    `composer update`  
